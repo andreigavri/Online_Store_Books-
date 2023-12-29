@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "_products")
+@Entity(name ="_products")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,6 +21,6 @@ public class ProductEntity {
     @Column(name = "description", nullable = false, updatable = true)
     private String description;
     @Column(name = "price", nullable = false, updatable = true)
-    private double price;
+    private Double price;
 
 }
