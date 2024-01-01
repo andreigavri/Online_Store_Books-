@@ -27,10 +27,9 @@ public class OrderEntity {
         private String deliveryAddress;
 
         @Column(name = "date_of_submission", nullable = true, updatable = true)
-        private String dataOfSubmission;
+        private String dateOfSubmission;
 
 //    @Column(name = "User_id", nullable = false, updatable = true)
 //    private User user;
-
     }
 
