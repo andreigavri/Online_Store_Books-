@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Builder
 @Component
-public class OrderD {
+public class Order {
     private Integer id;
     private Integer numberOfProducts;
     private Double totalCost;

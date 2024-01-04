@@ -2,7 +2,6 @@ package com.example.project2.controllers;
 
 import com.example.project2.entities.ProductEntity;
 import com.example.project2.models.Product;
-import com.example.project2.models.User;
 import com.example.project2.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +24,7 @@ public class ProductController {
         return productService.createProduct(product);
     }
 
-    @GetMapping("allProducts")
+    @GetMapping("/allProducts")
     public List<ProductEntity> getAllProducts() {
         return productService.getAllProducts();
     }

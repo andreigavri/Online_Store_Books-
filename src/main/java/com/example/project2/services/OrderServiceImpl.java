@@ -1,11 +1,9 @@
 package com.example.project2.services;
-
 import com.example.project2.entities.OrderEntity;
-import com.example.project2.models.OrderD;
+import com.example.project2.models.Order;
 import com.example.project2.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -19,24 +17,24 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderD createOrder(OrderD orderD) {
+    public Order createOrder(Order order) {
         OrderEntity orderEntityToSaveInDb = OrderEntity.builder()
-                .numberOfProducts(orderD.getNumberOfProducts())
-                .totalCost(orderD.getTotalCost())
-                .deliveryAddress(orderD.getDeliveryAddress())
-                .dateOfSubmission(orderD.getDateOfSubmission())
+                .numberOfProducts(order.getNumberOfProducts())
+                .totalCost(order.getTotalCost())
+                .deliveryAddress(order.getDeliveryAddress())
+                .dateOfSubmission(order.getDateOfSubmission())
                 .build();
         orderRepository.save(orderEntityToSaveInDb);
-        orderD.setId(orderEntityToSaveInDb.getId());
-        return orderD;
+        order.setId(orderEntityToSaveInDb.getId());
+        return order;
     }
 
     @Override
-    public OrderD getOrderById(Integer id) {
+    public Order getOrderById(Integer id) {
         Optional<OrderEntity> optionalEntity = orderRepository.findById(id);
         if (optionalEntity.isPresent()) {
             OrderEntity entity = optionalEntity.get();
-            return OrderD.builder()
+            return Order.builder()
                     .id(entity.getId())
                     .numberOfProducts(entity.getNumberOfProducts())
                     .totalCost(entity.getTotalCost())
@@ -53,9 +51,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderD getOrderByDateOfSubmission(String dateOfSubmission) {
+    public Order getOrderByDateOfSubmission(String dateOfSubmission) {
         OrderEntity entity = orderRepository.findByDateOfSubmission(dateOfSubmission);
-        OrderD orderToReturnFromDb = OrderD.builder()
+        Order orderToReturnFromDb = Order.builder()
                 .id(entity.getId())
                 .numberOfProducts(entity.getNumberOfProducts())
                 .totalCost(entity.getTotalCost())
@@ -66,14 +64,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderD updateOrder(Integer id, OrderD orderD) {
+    public Order updateOrder(Integer id, Order order) {
         Optional<OrderEntity> foundOrder = orderRepository.findById(id);
         if (foundOrder.isPresent()) {
             OrderEntity orderToUpdate = foundOrder.get();
-            orderToUpdate.setNumberOfProducts(orderD.getNumberOfProducts());
-            orderToUpdate.setTotalCost(orderD.getTotalCost());
-            orderToUpdate.setDeliveryAddress(orderD.getDeliveryAddress());
-            orderToUpdate.setDateOfSubmission(orderD.getDateOfSubmission());
+            orderToUpdate.setNumberOfProducts(order.getNumberOfProducts());
+            orderToUpdate.setTotalCost(order.getTotalCost());
+            orderToUpdate.setDeliveryAddress(order.getDeliveryAddress());
+            orderToUpdate.setDateOfSubmission(order.getDateOfSubmission());
+            orderRepository.save(orderToUpdate);
+            return order;
         }
         return null;
     }
