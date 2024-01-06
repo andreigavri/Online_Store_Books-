@@ -1,5 +1,6 @@
 package com.example.project2.models;
 
+import com.example.project2.entities.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,4 +18,5 @@ public class Order {
     private Double totalCost;
     private String deliveryAddress;
     private String dateOfSubmission;
+    private UserEntity user;
 }

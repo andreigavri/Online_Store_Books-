@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity(name ="_products")
 @Data
 @AllArgsConstructor
@@ -26,4 +28,12 @@ public class ProductEntity {
     @Enumerated(EnumType.STRING)
     @Column(name= "product_category",nullable = false)
     private ProductCategory category;
+    @ManyToOne
+    @JoinColumn(name ="author_id")
+    private AuthorEntity auth;
+    @ManyToOne
+    @JoinColumn(name="product_id")
+    private CategoryEntity categoryEntity;
+    @ManyToMany(mappedBy ="products")
+    private List<OrderEntity> orders;
 }

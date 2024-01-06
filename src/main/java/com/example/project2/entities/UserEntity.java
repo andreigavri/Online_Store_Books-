@@ -1,10 +1,13 @@
 package com.example.project2.entities;
+import com.example.project2.models.Order;
 import com.example.project2.models.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 
 @Entity(name ="_users")
@@ -31,6 +34,9 @@ public class UserEntity {
     private UserRole role;
     @Column(name = "avatar")
     private String avatar;
+    @OneToMany(mappedBy = "user")
+    private List<OrderEntity>orders;
+
 }
 
 
