@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface ProductService {
     //Create
-    Product createProduct(Product product);
+    Product createClassicsProduct(Product product);
+    Product createHistoryProduct(Product product);
 
     //READ
     Product getProductByTitle(String title);

@@ -13,8 +13,7 @@ public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name= "name_of_category")
+    @Column(name= "name_of_category", nullable = false, updatable = true)
     private String name;
-
 }
 

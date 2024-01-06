@@ -2,6 +2,7 @@ package com.example.project2.services;
 
 import com.example.project2.entities.ProductEntity;
 import com.example.project2.models.Product;
+import com.example.project2.models.ProductCategory;
 import com.example.project2.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,26 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public Product createProduct(Product product) {
+    public Product createClassicsProduct(Product product) {
+        product.setCategory(ProductCategory.CLASSICS);
         ProductEntity productEntityToSaveInDb = ProductEntity.builder()
                 .title(product.getTitle())
                 .description(product.getDescription())
                 .price(product.getPrice())
+                .category(product.getCategory())
+                .build();
+        productRepository.save(productEntityToSaveInDb);
+        product.setId(productEntityToSaveInDb.getId());
+        return product;
+    }
+    @Override
+    public Product createHistoryProduct(Product product) {
+        product.setCategory(ProductCategory.HISTORY);
+        ProductEntity productEntityToSaveInDb = ProductEntity.builder()
+                .title(product.getTitle())
+                .description(product.getDescription())
+                .price(product.getPrice())
+                .category(product.getCategory())
                 .build();
         productRepository.save(productEntityToSaveInDb);
         product.setId(productEntityToSaveInDb.getId());
@@ -44,6 +60,7 @@ public class ProductServiceImpl implements ProductService {
                 .title(entity.getTitle())
                 .description(entity.getDescription())
                 .price(entity.getPrice())
+                .category(entity.getCategory())
                 .build();
         return productToReturnFromDb;
     }
@@ -58,6 +75,7 @@ public class ProductServiceImpl implements ProductService {
                     .title(entity.getTitle())
                     .description(entity.getDescription())
                     .price(entity.getPrice())
+                    .category(entity.getCategory())
                     .build();
         }
         return null;
@@ -71,6 +89,7 @@ public class ProductServiceImpl implements ProductService {
                 .title(entity.getTitle())
                 .description(entity.getDescription())
                 .price(entity.getPrice())
+                .category(entity.getCategory())
                 .build();
         return productToReturnFromDb;
     }
@@ -83,6 +102,7 @@ public class ProductServiceImpl implements ProductService {
             productToUpdate.setTitle(product.getTitle());
             productToUpdate.setDescription(product.getDescription());
             productToUpdate.setPrice(product.getPrice());
+            productToUpdate.setCategory(product.getCategory());
             productRepository.save(productToUpdate);
             return product;
         }

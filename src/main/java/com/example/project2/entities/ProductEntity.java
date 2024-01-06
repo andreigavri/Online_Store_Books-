@@ -1,5 +1,6 @@
 package com.example.project2.entities;
 
+import com.example.project2.models.ProductCategory;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,5 +23,7 @@ public class ProductEntity {
     private String description;
     @Column(name = "price", nullable = false, updatable = true)
     private Double price;
-
+    @Enumerated(EnumType.STRING)
+    @Column(name= "product_category",nullable = false)
+    private ProductCategory category;
 }

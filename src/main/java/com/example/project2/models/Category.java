@@ -6,16 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Component
-public class Product {
+@Builder
+@Data
+public class Category {
     private Integer id;
-    private String title;
-    private String description;
-    private Double price;
-    private ProductCategory category;
-
+    private String name;
 }
