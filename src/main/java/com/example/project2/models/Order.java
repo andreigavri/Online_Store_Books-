@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +20,6 @@ public class Order {
     private Double totalCost;
     private String deliveryAddress;
     private String dateOfSubmission;
-    private UserEntity user;
+    private Integer userId;
+    private List<Integer> productsId;
 }

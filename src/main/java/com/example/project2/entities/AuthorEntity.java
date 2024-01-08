@@ -24,7 +24,4 @@ public class AuthorEntity {
     private String lastName;
     @OneToMany(mappedBy = "auth")
     private List<ProductEntity>products;
-    @OneToMany(mappedBy = "author")
-    private List<CategoryEntity>categories;
-
 }

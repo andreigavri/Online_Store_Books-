@@ -8,8 +8,10 @@ import java.util.List;
 
 public interface ProductService {
     //Create
-    Product createClassicsProduct(Product product);
-    Product createHistoryProduct(Product product);
+//    Product createClassicsProduct(Product product);
+//    Product createHistoryProduct(Product product);
+
+    Product createProduct(Product product);
 
     //READ
     Product getProductByTitle(String title);

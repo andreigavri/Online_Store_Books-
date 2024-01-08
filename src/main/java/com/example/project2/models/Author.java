@@ -1,6 +1,5 @@
 package com.example.project2.models;
 
-import com.example.project2.entities.CategoryEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,6 +18,4 @@ public class Author {
     private String firstName;
     private String lastName;
     private List<Product> products;
-    private List<CategoryEntity>categories;
-
 }

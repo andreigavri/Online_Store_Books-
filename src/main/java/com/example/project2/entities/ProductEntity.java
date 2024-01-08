@@ -1,6 +1,7 @@
 package com.example.project2.entities;
 
 import com.example.project2.models.ProductCategory;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,9 +32,8 @@ public class ProductEntity {
     @ManyToOne
     @JoinColumn(name ="author_id")
     private AuthorEntity auth;
-    @ManyToOne
-    @JoinColumn(name="product_id")
-    private CategoryEntity categoryEntity;
     @ManyToMany(mappedBy ="products")
+    @JsonBackReference
     private List<OrderEntity> orders;
+
 }

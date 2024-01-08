@@ -19,14 +19,19 @@ public class ProductController {
         this.productService = productServiceImpl;
     }
 
-    @PostMapping("/classics")
-    public Product createNewClassicsProduct(@RequestBody Product product) {
-        return productService.createClassicsProduct(product);
-    }
+//    @PostMapping("/classics")
+//    public Product createNewClassicsProduct(@RequestBody Product product) {
+//        return productService.createClassicsProduct(product);
+//    }
 
-    @PostMapping("/history")
-    public Product createNewHistoryProduct(@RequestBody Product product) {
-        return productService.createHistoryProduct(product);
+//    @PostMapping("/history")
+//    public Product createNewHistoryProduct(@RequestBody Product product) {
+//        return productService.createHistoryProduct(product);
+//    }
+
+    @PostMapping("create")
+    public Product createProduct(@RequestBody Product product) {
+        return productService.createProduct(product);
     }
 
     @GetMapping("/allProducts")

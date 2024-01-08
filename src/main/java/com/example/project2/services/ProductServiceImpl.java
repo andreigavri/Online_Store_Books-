@@ -3,6 +3,7 @@ package com.example.project2.services;
 import com.example.project2.entities.ProductEntity;
 import com.example.project2.models.Product;
 import com.example.project2.models.ProductCategory;
+import com.example.project2.repositories.AuthorRepository;
 import com.example.project2.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,34 +14,54 @@ import java.util.Optional;
 @Service
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
+    private final AuthorRepository authorRepository;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, AuthorRepository authorRepository) {
         this.productRepository = productRepository;
+        this.authorRepository = authorRepository;
     }
 
 
+
+//    @Override
+//    public Product createClassicsProduct(Product product) {
+//        product.setCategory(ProductCategory.CLASSICS);
+//        ProductEntity productEntityToSaveInDb = ProductEntity.builder()
+//                .title(product.getTitle())
+//                .description(product.getDescription())
+//                .price(product.getPrice())
+//                .category(product.getCategory())
+//                .build();
+//        productRepository.save(productEntityToSaveInDb);
+//        product.setId(productEntityToSaveInDb.getId());
+//        return product;
+//    }
+//    @Override
+//    public Product createHistoryProduct(Product product) {
+//        product.setCategory(ProductCategory.HISTORY);
+//        ProductEntity productEntityToSaveInDb = ProductEntity.builder()
+//                .title(product.getTitle())
+//                .description(product.getDescription())
+//                .price(product.getPrice())
+//                .category(product.getCategory())
+//                .build();
+//        productRepository.save(productEntityToSaveInDb);
+//        product.setId(productEntityToSaveInDb.getId());
+//        return product;
+//    }
+
     @Override
-    public Product createClassicsProduct(Product product) {
-        product.setCategory(ProductCategory.CLASSICS);
+    public Product createProduct(Product product) {
+        var author = authorRepository.findById(product.getAuthorId());
+        boolean authorIsPresent = author.isPresent();
+        if(!authorIsPresent) return null;
         ProductEntity productEntityToSaveInDb = ProductEntity.builder()
                 .title(product.getTitle())
                 .description(product.getDescription())
                 .price(product.getPrice())
                 .category(product.getCategory())
-                .build();
-        productRepository.save(productEntityToSaveInDb);
-        product.setId(productEntityToSaveInDb.getId());
-        return product;
-    }
-    @Override
-    public Product createHistoryProduct(Product product) {
-        product.setCategory(ProductCategory.HISTORY);
-        ProductEntity productEntityToSaveInDb = ProductEntity.builder()
-                .title(product.getTitle())
-                .description(product.getDescription())
-                .price(product.getPrice())
-                .category(product.getCategory())
+                .auth(author.get())
                 .build();
         productRepository.save(productEntityToSaveInDb);
         product.setId(productEntityToSaveInDb.getId());

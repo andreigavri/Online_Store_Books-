@@ -1,6 +1,7 @@
 package com.example.project2.entities;
 
 import com.example.project2.models.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +30,7 @@ public class OrderEntity {
     private String dateOfSubmission;
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private UserEntity user;
     @ManyToMany
     private List<ProductEntity> products;
