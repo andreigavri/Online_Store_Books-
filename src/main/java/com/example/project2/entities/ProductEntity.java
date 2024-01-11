@@ -31,6 +31,7 @@ public class ProductEntity {
     private ProductCategory category;
     @ManyToOne
     @JoinColumn(name ="author_id")
+    @JsonBackReference
     private AuthorEntity auth;
     @ManyToMany(mappedBy ="products")
     @JsonBackReference
